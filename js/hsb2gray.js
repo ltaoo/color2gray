@@ -93,6 +93,6 @@ function rgb2gray(r, g, b) {
 function hsb2gray(h, s, b) {
 	var hsbColor = [h, s, b];
 	var rgbColor = hsb2rgb.apply(null, hsbColor);
-	return rbg2gray.apply(null, rgbColor);
+	return rgb2gray.apply(null, rgbColor);
 }
 

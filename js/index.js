@@ -2,11 +2,30 @@
  * @file 颜色转换为覆盖黑色饱和度图层的明度值
  * @author ltaoo
  */
+var debug_mode = false;
 
-var lblResult = window.document.getElementById("lblResult");
+var lblResult = window.document.getElementById('value');
+var box = document.getElementsByClassName('gray_box__line')[0];
+var boxCursor = document.getElementsByClassName('gray_box__cursor')[0];
+
+if (!debug_mode) {
+  closeBtn.style.display = 'none';
+}
 
 function SetResultLabel(content) {
     lblResult.innerText = content;
+}
+
+/**
+ * 设置光标在灰色条的位置
+ * @param {Element} $box
+ * @param {number} value - 灰度值
+ */
+function setPosition(value) {
+  var width = box.clientWidth;
+  var leftInstance = width * (value / 100);
+  console.log(width, leftInstance);
+  boxCursor.style.left = leftInstance + 'px';
 }
 
 var gAlertsOn = true;
@@ -102,10 +121,12 @@ function PhotoshopCallbackUnique(csEvent) {
     var handle = HANDLERS[source];
     console.log(source, handle);
     if (handle) {
-      SetResultLabel(handle(eventDataParse));
+      const value = handle(eventDataParse);
+      SetResultLabel(value);
+      setPosition(value);
       return;
     }
-    SetResultLabel('该操作暂不支持');
+    // SetResultLabel('该操作暂不支持');
 }
 
 // Initialize my panel for first view
@@ -113,7 +134,7 @@ function Initialize() {
     document.body.style.backgroundColor = "#" + UIColorToHexString(csInterface.hostEnvironment.appSkinInfo.panelBackgroundColor);
     Persistent(true);
     Register(true, gRegisteredEvents.toString());
-    SetResultLabel("Initialize done");
+    // SetResultLabel("Initialize done");
 }
 
 function UIColorToHexString(inUIColor) {
