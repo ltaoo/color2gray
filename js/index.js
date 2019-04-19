@@ -6,7 +6,6 @@
 var lblResult = window.document.getElementById("lblResult");
 
 function SetResultLabel(content) {
-    console.log(content);
     lblResult.innerText = content;
 }
 
@@ -15,7 +14,6 @@ var gAlertsOn = true;
 var gStartDate = new Date();
 var gEndDate = new Date();
 
-// Get a reference to a CSInterface object
 var csInterface = new CSInterface();
 
 // Get extension ID
@@ -41,7 +39,6 @@ var eventType = 'com.adobe.PhotoshopJSONCallback' + gExtensionID;
 csInterface.addEventListener(eventType, PhotoshopCallbackUnique);
 
 closeBtn.onclick = function () {
-    SetResultLabel('hello');
     Register(false, gRegisteredEvents.toString());
     Persistent(false);
     if (window.__adobe_cep__) {
@@ -75,30 +72,40 @@ function Register(inOn, inEvents) {
     event.extensionId = gExtensionID;
     event.data = inEvents;
     csInterface.dispatchEvent(event);
-    SetResultLabel('Register: ' + inOn);
 }
 
+var HANDLERS = {
+  // 取色器取色
+  eyeDropperSample: function (eventDataParse) {
+      var r = eventDataParse.eventData.to.red;
+      var g = eventDataParse.eventData.to.grain;
+      var b = eventDataParse.eventData.to.blue;
+      return rgb2gray(r, g, b);
+  },
+  // 取色面板取色
+  colorPickerPanel: function (eventDataParse) {
+      var h = eventDataParse.eventData.to.hue._value;
+      var s = eventDataParse.eventData.to.saturation;
+      var b = eventDataParse.eventData.to.brightness;
+      return hsb2gray(h, s, b);
+  },
+};
 
 function PhotoshopCallbackUnique(csEvent) {
-    SetResultLabel(csEvent.data);
-    if (typeof csEvent.data === "string") {
-        var eventData = csEvent.data.replace("ver1,{", "{");
-        var eventDataParse = JSON.parse(eventData);
-        var jsonStringBack = JSON.stringify(eventDataParse, null, '\t');
-        // console.log(eventDataParse);
-        // 选择颜色
-        // if (eventDataParse.eventData.source === 'colorPickerPanel') {
-        //   var h = eventDataParse.eventData.to.hue._value;
-        //   var s = eventDataParse.eventData.to.saturation;
-        //   var b = eventDataParse.eventData.to.brightness;
-        //   SetResultLabel(hsb2gray(h, s, b));
-        // } else {
-        // }
-        SetResultLabel(jsonStringBack);
-        JSLogIt("PhotoshopCallbackUnique: " + jsonStringBack);
-    } else {
-        JSLogIt("PhotoshopCallbackUnique expecting string for csEvent.data!");
+    console.log(csEvent);
+    if (typeof csEvent.data !== 'string') {
+      return;
     }
+    var eventData = csEvent.data.replace('ver1,{', '{');
+    var eventDataParse = JSON.parse(eventData);
+    var source = eventDataParse.eventData.source;
+    var handle = HANDLERS[source];
+    console.log(source, handle);
+    if (handle) {
+      SetResultLabel(handle(eventDataParse));
+      return;
+    }
+    SetResultLabel('该操作暂不支持');
 }
 
 // Initialize my panel for first view
