@@ -108,6 +108,12 @@ var HANDLERS = {
       var b = eventDataParse.eventData.to.brightness;
       return hsb2gray(h, s, b);
   },
+  photoshopPicker: function (eventDataParse) {
+      var h = eventDataParse.eventData.to.hue._value;
+      var s = eventDataParse.eventData.to.saturation;
+      var b = eventDataParse.eventData.to.brightness;
+      return hsb2gray(h, s, b);
+  },
 };
 
 function PhotoshopCallbackUnique(csEvent) {

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ExtensionList>
-    <Extension Id="com.ltaoo.test">
+    <Extension Id="COLOR_TO_GRAY">
         <HostList>
             <Host Name="PHXS" Port="8001"/>
         </HostList>
