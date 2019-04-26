@@ -2,26 +2,8 @@
 
 去色插件，在选色时需要「猜测」所选颜色「真实明度」，虽然有一定规律但是非常难以掌握。该插件在选择颜色后会计算真实明度并展示。
 
-## Install
+[安装与使用说明](https://ltaoo.github.io/color2gray)
 
-双击运行 `installer.sh`。
-
-### macOS
-打开插件目录
-```bash
-open ~/Library/Application\ Support/Adobe/CEP/extensions
-```
-将当前目录下的插件复制到 Adobe 插件目录下
-```bash
-cp color2gray.zxp ~/Library/Application\ Support/Adobe/CEP/extensions/color2gray.zip
-```
-解压插件
-```bash
-unzip ~/Library/Application\ Support/Adobe/CEP/extensions/color2gray.zip -d ~/Library/Application\ Support/Adobe/CEP/extensions/color2gray
-```
-删除插件压缩包
-```bash
-rm  ~/Library/Application\ Support/Adobe/CEP/extensions/color2gray.zip
 ```
 
 ## 真实明度
