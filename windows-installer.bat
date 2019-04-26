@@ -1,0 +1,2 @@
+if exist "C:\Program Files\Common Files\Adobe\CEP\extensions" explorer "C:\Program Files\Common Files\Adobe\CEP\extensions"
+if exist "C:\Program Files (x86)\Common Files\Adobe\CEP\extensions" explorer "C:\Program Files (x86)\Common Files\Adobe\CEP\extensions"

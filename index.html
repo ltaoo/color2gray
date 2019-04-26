@@ -1,58 +1,31 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-  <head>
-    <meta http-equiv="content-type" content="text/html" charset="UTF-8" />
-    <script type="text/javascript" src="./js/lib/CSInterface.js"></script>
-    <script type="text/javascript" src="./js/lib/Vulcan.js"></script>
-    <script type="text/javascript" src="./js/lib/AgoraLib.js"></script>
-    <style>
-      .gray_box {
-        padding: 10px;
-        margin-bottom: 20px;
-      }
-      .gray_box__line {
-        display: inline-block;
-        position: relative;
-        width: 85%;
-        height: 20px;
-        vertical-align: middle;
-        /* 新语法，不带前缀，以支持标准兼容的浏览器（Opera 12.1， IE 10， Firefox 16， Chrome 26， Safari 6.1） */
-        background: linear-gradient(to right, black, white); 
-      }
-      .gray_box__cursor {
-        position: absolute;
-        bottom: -12px;
-        left: 0;
-        width: 0;
-        height: 0;
-
-        border: 10px solid transparent;
-        border-left: 6px solid transparent;
-        border-right: 6px solid transparent;
-        border-bottom: 10px solid white;
-      }
-      .gray_box__value {
-        display: inline-block;
-        margin-left: 2px;
-        width: 10%;
-        color: white;
-        text-align: center;
-        font-family: '微软雅黑';
-        border-radius: 2px;
-        background: gray;
-      }
-    </style>
-  </head>
-
-  <body onLoad="Initialize()">
-    <div class="gray_box">
-      <div class="gray_box__line">
-        <div class="gray_box__cursor"></div>
-      </div>
-      <div id="value" class="gray_box__value">0</div>
-    </div>
-    <button id="closeBtn">Close</button>
-    <script type="text/javascript" src="./js/hsb2gray.js"></script>
-    <script type="text/javascript" src="./js/index.js"></script>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Color2Gray - 更直观的明度判断插件</title>
+</head>
+<body>
+  <h1>
+    Color2Gray - 更直观的明度判断插件
+  </h1>
+  <article>
+    <h2>安装说明</h2>
+    <article>
+      <h3>Windows</h3>
+      <p>双击下载好的 installer.bat 文件，此时会打开插件目录，如果没打开说明没找到，需要自己根据软件版本和系统版本去找到正确的目录</p>
+      <p>在找到插件目录的情况下，将下载好的 color2gray 文件夹拷贝到插件目录，重启 PS 即可。</p>
+    </article>
+    <article>
+      <h3>macOS</h3>
+      <p></p>
+    </article>
+  </article>
+  <article>
+    <h2>下载</h2>
+    <div class="download-btn macOS"></div>
+    <div class="download-btn Windows"></div>
+  </article>
+</body>
 </html>
